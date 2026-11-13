@@ -1,0 +1,30 @@
+
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid px-4">
+
+            <a class="navbar-brand d-flex align-items-center gap-2"
+               th:href="@{/}">
+                <img th:src="@{/img/logo.png}"
+                     alt="Seal IA"
+                     class="nav-logo">
+                <span>Seal IA</span>
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <div class="navbar-nav ms-auto gap-3">
+                    <a class="nav-link" th:href="@{/}">Accueil</a>
+                    <a class="nav-link" th:href="@{/connexion}">Connexion</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</header>

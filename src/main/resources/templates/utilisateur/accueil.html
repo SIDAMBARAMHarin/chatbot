@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{utilisateur/base :: layout(~{::main})}">
+
+<main>
+
+    <section class="hero container">
+        <div class="hero-content">
+
+            <span class="badge-seal">Bienvenue sur Seal IA</span>
+
+            <h1>
+                Ton assistant IA<br>
+                <span>à portée de main.</span>
+            </h1>
+
+            <p>
+                Discute avec plusieurs modèles d'intelligence artificielle,
+                pose tes questions et obtiens des réponses rapidement.
+            </p>
+
+            <div class="hero-buttons">
+                <a th:href="@{/connexion}" class="btn btn-purple">
+                    Commencer →
+                </a>
+
+                <a href="#presentation" class="btn btn-outline-purple">
+                    Découvrir le projet
+                </a>
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <img th:src="@{/img/logo.png}" alt="Logo Seal IA">
+        </div>
+    </section>
+
+    <section class="container features" id="presentation">
+
+        <h2>Découvre les fonctionnalités</h2>
+        <p class="section-subtitle">
+            Toutes les fonctionnalités de ton assistant IA.
+        </p>
+
+        <div class="row g-4 mt-3">
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Discuter avec l'IA</h3>
+                    <p>Pose tes questions et obtiens des réponses rapidement.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Plusieurs modèles</h3>
+                    <p>Choisis parmi différents modèles d'intelligence artificielle.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Historique</h3>
+                    <p>Retrouve tes anciennes conversations.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+</html>
