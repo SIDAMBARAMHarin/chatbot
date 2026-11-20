@@ -1,30 +1,77 @@
 
-<header th:fragment="header">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid px-4">
+<header th:fragment="header" class="sidebar-content">
 
-            <a class="navbar-brand d-flex align-items-center gap-2"
-               th:href="@{/}">
-                <img th:src="@{/img/logo.png}"
-                     alt="Seal IA"
-                     class="nav-logo">
-                <span>Seal IA</span>
-            </a>
+    <!-- Logo Seal IA -->
+    <a class="navbar-brand d-flex align-items-center gap-2"
+       th:href="@{/}">
 
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <img th:src="@{/img/logo.png}"
+             alt="Seal IA"
+             class="nav-logo">
 
-            <div class="collapse navbar-collapse" id="menu">
-                <div class="navbar-nav ms-auto gap-3">
-                    <a class="nav-link" th:href="@{/}">Accueil</a>
-                    <a class="nav-link" th:href="@{/connexion}">Connexion</a>
-                </div>
+        <span>Seal IA</span>
+
+    </a>
+
+    <!-- Nouvelle conversation -->
+    <a th:href="@{/}" class="btn btn-new-chat">
+
+        <span>+</span>
+        Nouvelle conversation
+
+    </a>
+
+
+    <!-- Historique des conversations -->
+    <div class="history-section">
+
+        <h6>Historique</h6>
+
+        <div class="list-group">
+
+            <div th:each="c : ${conversations}"
+                 class="chat-history-item">
+
+                <!-- Ouvrir la conversation -->
+                <a th:href="@{/conversations/{id}(id=${c.id})}"
+                   th:text="${c.titre}"
+                   class="list-group-item list-group-item-action"
+                   th:classappend="${conversation != null and conversation.id == c.id} ? 'active' : ''">
+                </a>
+
+                <!-- Supprimer la conversation -->
+                <form th:action="@{/conversations/{id}/supprimer(id=${c.id})}"
+                      method="post"
+                      onsubmit="return confirm('Voulez-vous vraiment supprimer cette conversation ?')">
+
+                    <button type="submit"
+                            class="delete-chat-btn"
+                            title="Supprimer la conversation">
+                        ×
+                    </button>
+
+                </form>
+
             </div>
 
+            <p th:if="${conversations == null or conversations.isEmpty()}"
+               class="empty-history">
+                Aucune conversation pour le moment
+            </p>
+
         </div>
-    </nav>
+
+    </div>
+
+
+    <!-- Bas de la barre latérale -->
+    <div class="sidebar-bottom">
+
+        <a th:href="@{/connexion}" class="sidebar-account">
+            <span class="account-icon">👤</span>
+            <span>Connexion</span>
+        </a>
+
+    </div>
+
 </header>

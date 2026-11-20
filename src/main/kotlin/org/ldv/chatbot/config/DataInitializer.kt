@@ -23,7 +23,7 @@ class DataInitializer(
             ?: fournisseurIADAO.save(
                 FournisseurIA(
                     nom = "Mistral",
-                    logo = "/images/mistral.png",
+                    logo = "/img/mistral.png",
                     description = "Fournisseur français de modèles d'intelligence artificielle."
                 )
             )
@@ -34,7 +34,7 @@ class DataInitializer(
             ?: fournisseurIADAO.save(
                 FournisseurIA(
                     nom = "Gemini",
-                    logo = "/images/gemini.png",
+                    logo = "/img/gemini.jpeg",
                     description = "Modèles d'intelligence artificielle de Google."
                 )
             )
@@ -46,7 +46,7 @@ class DataInitializer(
                 nom = "gemini-3.8-flash",
                 urlAPI = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
                 description = "Modèle rapide et polyvalent.",
-                logo = "/images/gemini.png",
+                logo = "/img/gemini.jpeg",
                 fournisseurIA = gemini
             ),
 
@@ -54,7 +54,7 @@ class DataInitializer(
                 nom = "gemini-3.5-flash-lite",
                 urlAPI = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent",
                 description = "Modèle rapide pour les tâches simples.",
-                logo = "/images/gemini.png",
+                logo = "/img/gemini.jpeg",
                 fournisseurIA = gemini
             ),
 
@@ -62,7 +62,7 @@ class DataInitializer(
                 nom = "mistral-small-latest",
                 urlAPI = "https://api.mistral.ai/v1/chat/completions",
                 description = "Modèle léger pour les conversations et les tâches courantes.",
-                logo = "/images/mistral.png",
+                logo = "/img/mistral.png",
                 fournisseurIA = mistral
             ),
 
@@ -70,7 +70,7 @@ class DataInitializer(
                 nom = "mistral-medium-latest",
                 urlAPI = "https://api.mistral.ai/v1/chat/completions",
                 description = "Modèle plus avancé pour les tâches complexes.",
-                logo = "/images/mistral.png",
+                logo = "/img/mistral.png",
                 fournisseurIA = mistral
             )
         )

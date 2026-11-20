@@ -28,5 +28,4 @@ open class ModeleIA(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fournisseur_ia_id", nullable = false)
     open var fournisseurIA: FournisseurIA? = null
-
 )

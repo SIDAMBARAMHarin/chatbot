@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{utilisateur/base :: layout(~{::main})}">
+
+<head>
+    <title>Assistant IA</title>
+</head>
+
+<body>
+
+<main class="chat-page flex-grow-1 d-flex flex-column">
+
+    <!-- Zone des messages -->
+    <section class="flex-grow-1 overflow-auto p-4">
+
+        <!-- Aucune conversation sélectionnée -->
+        <div th:if="${conversation == null}" class="text-center mt-5">
+            <h2>Comment puis-je vous aider ?</h2>
+            <p class="text-muted">
+                Choisissez un modèle IA et posez votre question.
+            </p>
+        </div>
+
+        <!-- Historique des messages -->
+        <div th:each="message : ${messages}" class="mb-4">
+
+            <strong th:text="${message.typeMessage}"></strong>
+
+            <!-- Affichage des réponses -->
+            <div class="message mt-2 message-content markdown-content"
+                 th:text="${message.contenu}">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Zone de saisie -->
+    <div class="border-top p-3">
+
+        <!-- Création d'une conversation -->
+        <form id="formChat"
+              th:if="${conversation == null}"
+              th:action="@{/conversations}"
+              method="post">
+
+            <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-end gap-2">
+
+                <!-- Choix du modèle IA -->
+                <div class="model-select-wrapper">
+                    <select name="idModele"
+                            class="form-select model-select"
+                            required>
+
+                        <option value="" disabled selected>
+                            Choisir un modèle IA
+                        </option>
+
+                        <option th:each="modele : ${modeles}"
+                                th:value="${modele.id}"
+                                th:text="${modele.nom}">
+                        </option>
+
+                    </select>
+                </div>
+
+                <!-- Zone de texte -->
+                <div class="flex-grow-1">
+                    <textarea name="prompt"
+                              class="form-control"
+                              rows="2"
+                              placeholder="Posez votre question..."
+                              required></textarea>
+                </div>
+
+                <!-- Bouton envoyer -->
+                <div class="send-button-wrapper">
+                    <button class="btn btn-primary" type="submit">
+                        Envoyer
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- Conversation existante -->
+        <form th:if="${conversation != null}"
+              th:action="@{/conversations/{id}/messages(id=${conversation.id})}"
+              method="post">
+
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+
+                <!-- Modèle utilisé -->
+                <div class="model-current d-flex align-items-center gap-2">
+
+                    <img th:src="${#strings.startsWith(#strings.toLowerCase(conversation.modeleIA.nom), 'mistral')} ? @{/img/mistral.png} : @{/img/gemini.jpeg}"
+                         th:alt="${conversation.modeleIA.nom}"
+                         alt="Logo IA"
+                         width="40"
+                         height="40"
+                         style="object-fit: contain; display: block;">
+
+                    <span th:text="${conversation.modeleIA.nom}"></span>
+
+                </div>
+
+                <!-- Zone de texte -->
+                <div class="flex-grow-1">
+                    <textarea name="prompt"
+                              class="form-control"
+                              rows="2"
+                              placeholder="Écrivez votre message..."
+                              required></textarea>
+                </div>
+
+                <!-- Bouton envoyer -->
+                <div class="send-button-wrapper">
+                    <button class="btn btn-primary" type="submit">
+                        Envoyer
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -17,20 +17,39 @@
 
     <link rel="stylesheet" th:href="@{/vendor/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/png" th:href="@{/img/logo.png}">
 </head>
 
 <body>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<div class="app-shell">
 
-<main th:replace="${content}">
-    Contenu de la page
-</main>
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <div th:replace="~{fragments/header :: header}"></div>
+    </aside>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+    <!-- Zone principale -->
+    <div class="main-panel">
+
+        <main th:replace="${content}">
+            Contenu de la page
+        </main>
+
+        <div th:replace="~{fragments/footer :: footer}"></div>
+
+    </div>
+
+</div>
 
 <script th:src="@{/vendor/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/script.js}"></script>
+
+<!-- Convertisseur Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- Protection contre les attaques XSS -->
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 
 </body>
 </html>
